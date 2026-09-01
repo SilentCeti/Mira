@@ -27,7 +27,8 @@ public class UptimeTimer {
         return getHours() / 24;
     }
 
-    public String format() {
+    /** Returns time util server started in format (days, hours, minutes). */
+    public String format(String format) {
         long totalSeconds = getSeconds();
 
         long days = totalSeconds / 86400;
@@ -35,12 +36,6 @@ public class UptimeTimer {
         long minutes = (totalSeconds % 3600) / 60;
         long seconds = totalSeconds % 60;
 
-        return String.format(
-                "%dd %02dh %02dm %02ds",
-                days,
-                hours,
-                minutes,
-                seconds
-        );
+        return String.format(format, days, hours, minutes, seconds);
     }
 }
