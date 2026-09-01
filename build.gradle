@@ -1,0 +1,50 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'java'
+}
+
+def pluginFile = file("src/main/resources/plugin.json")
+def propertiesFile = file("src/main/resources/properties.json")
+
+def plugin = new JsonSlurper().parse(pluginFile)
+def properties = new JsonSlurper().parse(propertiesFile)
+
+group = properties.group
+version = plugin.version
+
+repositories {
+    mavenCentral()
+    ivy {
+        url = 'https://github.com/'
+        patternLayout {
+            artifact "Anuken/Mindustry/releases/download/${properties.mindustryVersion}/dependencies.jar"
+        }
+        metadataSources {
+            artifact()
+        }
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:6.0.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compileOnly "Anuken:Minudstry:${properties.mindustryVersion}"
+    implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
+    implementation 'net.dv8tion:JDA:6.0.0'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

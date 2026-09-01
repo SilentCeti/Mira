@@ -1,0 +1,7 @@
+{
+  "name": "Mira",
+  "author": "Silent Ceti",
+  "version": "1.0",
+  "main": "net.silent.ceti.mira.Main",
+  "description": "Mira game-mode plugin for Mindustry."
+}
