@@ -1,7 +1,7 @@
 package net.silent.ceti.mira.time;
 
 public class UptimeTimer {
-    private long startTime;
+    private long startTime = System.nanoTime();
 
     public void uptimeTimer() {
         startTime = System.nanoTime();
