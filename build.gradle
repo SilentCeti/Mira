@@ -31,7 +31,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     compileOnly "Anuken:Minudstry:${properties.mindustryVersion}"
-    implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
+    //implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
     implementation 'net.dv8tion:JDA:6.0.0'
 }
 
