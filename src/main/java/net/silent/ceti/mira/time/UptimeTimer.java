@@ -1,0 +1,46 @@
+package net.silent.ceti.mira.time;
+
+public class UptimeTimer {
+    private long startTime;
+
+    public void uptimeTimer() {
+        startTime = System.nanoTime();
+    }
+
+    public long getMillis() {
+        return (System.nanoTime() - startTime) / 1_000_000L;
+    }
+
+    public long getSeconds() {
+        return (System.nanoTime() - startTime) / 1_000_000_000L;
+    }
+
+    public long getMinutes() {
+        return getSeconds() / 60;
+    }
+
+    public long getHours() {
+        return getMinutes() / 60;
+    }
+
+    public long getDays() {
+        return getHours() / 24;
+    }
+
+    public String format() {
+        long totalSeconds = getSeconds();
+
+        long days = totalSeconds / 86400;
+        long hours = (totalSeconds / 3600) % 24;
+        long minutes = (totalSeconds % 3600) / 60;
+        long seconds = totalSeconds % 60;
+
+        return String.format(
+                "%dd %02dh %02dm %02ds",
+                days,
+                hours,
+                minutes,
+                seconds
+        );
+    }
+}
