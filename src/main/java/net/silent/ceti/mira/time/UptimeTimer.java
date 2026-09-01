@@ -27,7 +27,7 @@ public class UptimeTimer {
         return getHours() / 24;
     }
 
-    /** Returns time util server started in format (days, hours, minutes). */
+    /** Returns time util server started in format (days, hours, minutes, seconds). */
     public String format(String format) {
         long totalSeconds = getSeconds();
 
