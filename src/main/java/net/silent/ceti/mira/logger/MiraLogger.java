@@ -1,12 +1,13 @@
 package net.silent.ceti.mira.logger;
 
 import net.silent.ceti.mira.string.MindustryColorParser;
+import net.silent.ceti.mira.time.Time;
 import net.silent.ceti.mira.time.UptimeTimer;
 
 public class MiraLogger {
-    private static final String LOG_PREFIX = "[scarlet][~Mira~]";
+    private static final String LOG_PREFIX = "[scarlet][[red]~[scarlet]Mira[red]~[scarlet]][r]";
 
-    private static final UptimeTimer uptime = new UptimeTimer();
+    private static final Time time = new Time();
 
     private enum LogLevel {
 
@@ -56,7 +57,7 @@ public class MiraLogger {
     }
 
     private static void log(LogLevel level, String text) {
-        String result = "[gray][b][" + uptime.format("%dd %02dh %02dm %02ds") + "][r] " + LOG_PREFIX + "[r] " + level.color + "[" + level.name + "][r] " + text + "[r]";
+        String result = "[gray][b][" + time.format("%02d:%02d:%02d") + "][r] " + LOG_PREFIX + "[r] " + level.color + "[" + level.name + "][r] " + text + "[r]";
 
         System.out.print("\r\u001B[2K");
         System.out.println(MindustryColorParser.toAnsi(result));
